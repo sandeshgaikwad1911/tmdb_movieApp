@@ -21,30 +21,34 @@ function App() {
   const dispatch = useDispatch();
   const {url} = useSelector((state)=>state.home);
 
-  const apiTesting = ()=>{
-    fetchDataFromApi(`/movie/popular`).then((res)=>{
-      console.log('apiRes',res);
-      dispatch(getApiConfiguration(res));
-    })
-  }
+  const fetchConfig = ()=>{
+    fetchDataFromApi(`/configuration`).then((res)=>{
+      console.log('fetchConfig',res?.images?.secure_base_url);
 
-  
+      const imgUrl = {
+        backdrop: res?.images?.secure_base_url+"original",
+        poster: res?.images?.secure_base_url+"original",
+        profile: res?.images?.secure_base_url+"original",
+      }     
+      dispatch(getApiConfiguration(imgUrl));
+    })
+  } 
   useEffect(()=>{
-    apiTesting();
+    fetchConfig();
   },[])
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Header/>
+        {/* <Header/> */}
         <Routes>
           <Route path='/' element={<Home />}/>
           <Route path='/:mediaType/:id' element={<Details />}/>
-          <Route path='/:search/:query' element={<SearchResult />}/>
-          <Route path='/:explore/:mediaType' element={<Explore />}/>
+          <Route path='/search/:query' element={<SearchResult />}/>
+          <Route path='/explore/:mediaType' element={<Explore />}/>
           <Route path='*' element={<PageNotFound />}/>
         </Routes>
-        <Footer/>
+        {/* <Footer/> */}
       </BrowserRouter>
     </div>
   )
@@ -68,7 +72,6 @@ export default App;
       for images we have above url => 
       original => is file size =>    tmdb has different sizes available to choose from , we have choosen original
       image url => /wwemzKWzjKYJFfCeiB57q3r4Bcm.png
-
  */
 
 
@@ -96,3 +99,6 @@ export default App;
   */
 
       // ------------------------------------------------
+
+
+

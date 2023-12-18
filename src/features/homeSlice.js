@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   url: {},
@@ -10,7 +10,6 @@ export const homeSlice = createSlice({
     initialState,
     reducers:{
         // methods are called 'actions' in reducers
-
         getApiConfiguration: (state, action)=>{
             state.url = action.payload
         },
