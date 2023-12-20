@@ -54,9 +54,6 @@ useEffect(()=>{
           </div>)
         }
 
-          {/* opacity_layer is for giving style */}
-        <div className="opacity_layer"></div>
-
         <ContentWrapper>  
             <div className="heroBannerContent">
 
@@ -72,6 +69,9 @@ useEffect(()=>{
 
             </div>
         </ContentWrapper>
+
+        {/* opacity_layer is for giving style */}
+        <div className="opacity_layer"></div>
 
         
 
