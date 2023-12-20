@@ -81,7 +81,7 @@ const Header = () => {
     // whenever we change page means change url.. our scroll start from top
     useEffect(()=>{
       window.scrollTo(0,0)
-    },[location])
+    },[location]);
 
   return (
     <header className={`header ${mobileMenu ? "mobileView" : ""} ${show} `}>

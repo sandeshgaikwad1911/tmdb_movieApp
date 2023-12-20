@@ -9,11 +9,11 @@
     align-items: center;
     transition: all ease 0.5s;
     transform: translateY(0);
-    z-index: 2;
+    // z-index: 2;
     &.top {
         background: rgba(0, 0, 0, 0.25);
         backdrop-filter: blur(3.5px);
-        -webkit-backdrop-filter: blur(3.5px);
+        // -webkit-backdrop-filter: blur(3.5px);
     }
     &.show {
         background-color: var(--black3);
@@ -39,8 +39,8 @@
     .menuItems {
         list-style-type: none;
         display: none;
-        align-items: center;
         @include md {
+            align-items: center;
             display: flex;
         }
         .menuItem {
