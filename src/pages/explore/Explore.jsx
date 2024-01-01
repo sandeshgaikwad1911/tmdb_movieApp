@@ -1,4 +1,4 @@
-import './style.scss'
+import './explore.scss'
 const Explore = () => {
   return (
     <div>Explore</div>

@@ -1,4 +1,4 @@
-import './style.scss'
+import './details.scss'
 const Details = () => {
   return (
     <div>Details</div>

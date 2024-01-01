@@ -1,4 +1,4 @@
-import './style.scss'
+import './searchResult.scss'
 const SearchResult = () => {
   return (
     <div>SearchResult</div>

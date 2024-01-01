@@ -49,6 +49,8 @@ const Header = () => {
       setMobileMenu(false);
     }
 
+    // ----------------------------------------------------
+
     const controlNavbar = ()=>{
       // console.log(window.scrollY);   // show values on scroll position
       if(window.scrollY > 200){
@@ -66,7 +68,7 @@ const Header = () => {
       // when we scroll .. that scrolled value is set inside setLastScrollY() function
     }
 
-    // on set of setShow()  values we change the css.
+    // on set of setShow() values we change the css.
 
     useEffect(()=>{
       window.addEventListener("scroll", controlNavbar)
@@ -77,6 +79,7 @@ const Header = () => {
 
     },[lastScrollY]);
 
+// --------------------------------------------------------
 
     // whenever we change page means change url.. our scroll start from top
     useEffect(()=>{

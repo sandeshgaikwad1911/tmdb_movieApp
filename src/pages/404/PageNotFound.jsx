@@ -1,4 +1,4 @@
-import './style.scss'
+import './pageNotFound.scss'
 
 const PageNotFound = () => {
   return (

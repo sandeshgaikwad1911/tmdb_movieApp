@@ -37,6 +37,8 @@ function App() {
     fetchConfig();
   },[])
 
+  // --------------------------------------------------------
+
   return (
     <div className="App">
       <BrowserRouter>

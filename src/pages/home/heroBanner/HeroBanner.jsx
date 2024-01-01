@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import './style.scss';
+import './heroBanner.scss';
 import { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useFetch} from '../../../hooks/useFetch'
