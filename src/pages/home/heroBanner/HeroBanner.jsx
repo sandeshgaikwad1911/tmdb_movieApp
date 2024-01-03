@@ -58,7 +58,7 @@ useEffect(()=>{
             <div className="heroBannerContent">
 
                 <span className="title">MovieX.</span>             
-                <span className="subtitle">The biggest Indian hits. The best Indian stories. All streaming here.</span>
+                <span className="subtitle">Unlimited movies, TV shows and more</span>
                 <div className="searchInput">
                   <input type="text" placeholder="search for movies and tv shows..."
                     onChange={(e)=>setQuery(e.target.value)}
