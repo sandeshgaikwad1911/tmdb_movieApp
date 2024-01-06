@@ -12,8 +12,8 @@ const Details = () => {
   const {mediaType, id} = useParams();
   const {data, loading} = useFetch(`/${mediaType}/${id}/videos`);
   const {data: credits, loading: creditLoading} = useFetch(`/${mediaType}/${id}/credits`); 
-  console.log('details_Videodata', data)
-  console.log('details_Creditsdata', credits);
+  // console.log('details_Videodata', data)
+  // console.log('details_Creditsdata', credits);
   return (
     <div>
       <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />

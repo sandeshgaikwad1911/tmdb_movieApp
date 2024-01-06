@@ -10,6 +10,8 @@ import "./videoSection.scss"
 
 const VideoSection = ({data, loading}) => {
 
+    console.log('VideoSection', data?.results.length)
+
     const [show, setShow] = useState(false);
     const [videoId, setVideoId] = useState(null);
 
@@ -24,41 +26,47 @@ const VideoSection = ({data, loading}) => {
     };
 
   return (
-    <div className="videosSection">
-        <ContentWrapper>
-            <div className="sectionHeading">Official Videos</div>
-            {
-                !loading ? (
-                    <div className="videos">
+    <>
+        {
+            data?.results.length > 0 ? (
+                <div className="videosSection">
+                    <ContentWrapper>
+                        <div className="sectionHeading">Official Videos</div>
                         {
-                            data?.results?.map((video)=>(
-                                <div key={video.id} className="videoItem" 
-                                    onClick={()=>{setVideoId(video.key), setShow(true)}}
-                                >
-                                    <div className="videoThumbnail">
-                                        <Img src={`https://img.youtube.com/vi/${video.key}/mqdefault.jpg`} />   
-                                        {/*static url..to access youtube official poster images... search for youtube thumbnail url */}
-                                        <PlayIcon/>
-                                    </div>
-                                    <div className="videoTitle">{video.name}</div>
+                            !loading ? (
+                                <div className="videos">
+                                    {
+                                        data?.results?.map((video)=>(
+                                            <div key={video.id} className="videoItem" 
+                                                onClick={()=>{setVideoId(video.key), setShow(true)}}
+                                            >
+                                                <div className="videoThumbnail">
+                                                    <Img src={`https://img.youtube.com/vi/${video.key}/mqdefault.jpg`} />   
+                                                    {/*static url..to access youtube official poster images... search for youtube thumbnail url */}
+                                                    <PlayIcon/>
+                                                </div>
+                                                <div className="videoTitle">{video.name}</div>
 
 
+                                            </div>
+                                        ))
+                                    }
                                 </div>
-                            ))
+                            ) : (
+                                <div className="videoSkeleton">
+                                    {loadingSkeleton()}
+                                    {loadingSkeleton()}
+                                    {loadingSkeleton()}
+                                    {loadingSkeleton()}
+                                </div>
+                            )
                         }
-                    </div>
-                ) : (
-                    <div className="videoSkeleton">
-                        {loadingSkeleton()}
-                        {loadingSkeleton()}
-                        {loadingSkeleton()}
-                        {loadingSkeleton()}
-                    </div>
-                )
-            }
-        </ContentWrapper>
-        <VideoPopUp show={show} setShow={setShow} videoId={videoId} setVideoId={setVideoId}/>
-    </div>
+                    </ContentWrapper>
+                    <VideoPopUp show={show} setShow={setShow} videoId={videoId} setVideoId={setVideoId}/>
+                </div>
+            ) : (<></>)
+        }
+    </>
   )
 }
 
