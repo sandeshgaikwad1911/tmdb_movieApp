@@ -21,6 +21,8 @@ const DetailsBanner = ({video, crew}) => {
     const {mediaType, id} = useParams();
     const {data, loading} = useFetch(`/${mediaType}/${id}`);
 
+    console.log('DetailsBanner data', data);
+
     const {url} = useSelector((state)=>state.home);
 
     const toHoursAndMinutes = (totalMinutes) => {
@@ -74,10 +76,19 @@ const DetailsBanner = ({video, crew}) => {
 
                                             <div className="row">
                                                 <CircleRating rating={data.vote_average.toFixed(1)}/>
-                                                <div className="playbtn" onClick={playVideo}>
+                                                {/* <div className="playbtn" onClick={playVideo}>
                                                     <PlayIcon />
                                                     <span className="text">Watch Trailer</span>
-                                                </div>
+                                                </div> */}
+                                                {
+                                                    video != undefined ? (
+                                                        <div className="playbtn" onClick={playVideo}>
+                                                            <PlayIcon />
+                                                            <span className="text">Watch Trailer</span>
+                                                        </div>
+                                                    ) : (<></>)
+                                                }
+                                                
                                             </div>
 
                                             <div className="overview">
@@ -86,12 +97,6 @@ const DetailsBanner = ({video, crew}) => {
                                             </div>
 
                                             <div className="info">
-                                                {/* {data.status && (
-                                                    <div className="infoItem">
-                                                        <span className="text bold">Status: </span>
-                                                        <span className="text">{data.status}</span>
-                                                    </div>
-                                                )} */}
                                                 {data.release_date && (
                                                     <div className="infoItem">                                                       
                                                         <span className="text bold">Release Date: </span>                

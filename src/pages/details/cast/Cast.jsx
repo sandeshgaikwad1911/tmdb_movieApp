@@ -7,6 +7,8 @@ import './cast.scss'
 
 const Cast = ({data, loading}) => {
 
+    // console.log('topCast Data', data?.length);
+
     const {url} = useSelector((state)=>state.home);
 
     const skeleton = () => {
@@ -22,7 +24,10 @@ const Cast = ({data, loading}) => {
   return (
     <div className='castSection'>
         <ContentWrapper>
-            <div className="sectionHeading">Top Cast</div>
+            {
+                data?.length > 0 ? ( <div className="sectionHeading">Top Cast</div>) : (<> </>)
+            }
+            {/*  <div className="sectionHeading">Top Cast</div> */}
             {
                 !loading ? (
                     <div className="listItems">
