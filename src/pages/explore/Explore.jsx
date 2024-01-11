@@ -7,6 +7,7 @@ import ContentWrapper from '../../components/contentWrapper/ContentWrapper';
 import MovieCard from '../../components/movieCard/MovieCard';
 import Spinner from '../../components/spinner/Spinner';
 import { fetchDataFromApi } from '../../utils/api';
+import { useFetch } from '../../hooks/useFetch';
 
 let filters = {};
 
@@ -15,7 +16,7 @@ const sortbyData = [
     { value: "popularity.asc", label: "Popularity Ascending"},
     { value: "vote_average.desc", label: "Rating Descending"},
     { value: "vote_average.asc", label: "Rating Ascending"},
-    {value: "primary_release_date.desc",label: "Release Date Descending"},
+    { value: "primary_release_date.desc",label: "Release Date Descending"},
     { value: "primary_release_date.asc", label: "Release Date Ascending"},
     { value: "original_title.asc", label: "Title (A-Z)"},
 ];
@@ -27,7 +28,10 @@ const Explore = () => {
     const [pageNum, setPageNum] = useState(1);
     const [loading, setLoading] = useState(false);
     const [sortby, setSortby] = useState(null);
+    const [genre, setGenre] = useState(null);
     const { mediaType } = useParams();
+
+    const { data: genresData } = useFetch(`/genre/${mediaType}/list`);
 
     const fetchInitialData = ()=>{
       setLoading(true);
@@ -57,6 +61,7 @@ const Explore = () => {
       setData(null)
       setPageNum(1)
       setSortby(null)
+      setGenre(null);
       fetchInitialData();
     },[mediaType])
 
@@ -68,6 +73,17 @@ const Explore = () => {
             filters.sort_by = selectedItems.value;
           }else{
             delete filters.sort_by;
+          }
+        }
+
+        if(action.name === "genres"){
+          setGenre(selectedItems)
+          if(action.action !== "clear"){
+            let genreId = selectedItems.map((g)=>g.id);
+            genreId = JSON.stringify(genreId).slice(1,-1);
+            filters.with_genres = genreId;
+          }else{
+            delete filters.with_genres;
           }
         }
 
@@ -86,6 +102,21 @@ const Explore = () => {
             }
           </div>
           <div className="filters">
+
+              <Select
+                    isMulti
+                    name="genres"
+                    value={genre}
+                    closeMenuOnSelect={false}
+                    options={genresData?.genres}
+                    getOptionLabel={(option) => option.name}
+                    getOptionValue={(option) => option.id}
+                    onChange={onChange}
+                    placeholder="Select genres"
+                    className="react-select-container genresDD"
+                    classNamePrefix="react-select"
+              />
+
               <Select
                     name="sortby"
                     value={sortby}
@@ -96,6 +127,7 @@ const Explore = () => {
                     className="react-select-container sortbyDD"
                     classNamePrefix="react-select"
               />
+              
           </div>
         </div>
         {

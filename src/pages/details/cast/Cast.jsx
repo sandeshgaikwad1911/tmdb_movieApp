@@ -27,7 +27,7 @@ const Cast = ({data, loading}) => {
             {
                 data?.length > 0 ? ( <div className="sectionHeading">Top Cast</div>) : (<> </>)
             }
-            {/*  <div className="sectionHeading">Top Cast</div> */}
+
             {
                 !loading ? (
                     <div className="listItems">
